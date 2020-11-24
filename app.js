@@ -3,25 +3,35 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport');
+var session = require('express-session');
 var exphbs  = require('express-handlebars');
 
+//include Routers
 var usersRouter = require('./routes/users');
+var flash = require('connect-flash');
+require('./passportSetup')(passport);
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-
+app.engine('hbs', exphbs({ extname: '.hbs',  defaultLayout: 'main' }));
+app.set('view engine', 'hbs');
+app.use(flash())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({ secret: 'our new secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 //routers
 app.use('/', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
