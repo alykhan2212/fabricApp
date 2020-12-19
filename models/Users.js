@@ -22,7 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true
     },
-    is_admin: {
+    role: {
+      type: DataTypes.ENUM('super_admin','admin', 'user'),
+      allowNull: false,
+    },
+    is_active: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
     }

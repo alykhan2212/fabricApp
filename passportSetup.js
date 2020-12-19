@@ -43,7 +43,11 @@ module.exports = function(passport) {
 			} else if(!validPassword(user, password)) {
 				// req.flash('message', 'Incorrect credentials')
 				return done(null, false , req.flash('message', 'Incorrect credentials'))
-			}
+			} 
+			// else if(user.is_admin && !user.is_active) {
+			// 	// req.flash('message', 'Incorrect credentials')
+			// 	return done(null, false , req.flash('message', 'Not Active yet'))
+			// }
 			return done(null, user);
 		}).catch(err => {
 			done(err, false);

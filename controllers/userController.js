@@ -7,9 +7,13 @@ const {isEmpty} = require('lodash');
 
 const {validateUser} = require('../validators/signup')
 
+exports.homePage = function(req, res, next) {
+	// res.send(req.user)
+	res.render('index', { title: 'Home', user: req.user });
+}
+
 exports.show_login = function(req, res, next) {
-	res.render('user/login', {title:'Login - VRS', formData: {} , message: req.flash('message')  });
-    // res.render('user/login', {title:'Login - VRS'});   
+	res.render('user/login', {title:'Login - VRS', formData: {} , message: req.flash('message')  });  
 }
 
 exports.show_signup = function(req, res, next) {
@@ -25,6 +29,7 @@ const generateHash = function(password) {
 }
 
 exports.signup = function(req, res, next) {
+	
    	let errors = {};
     return validateUser(errors,req).then(errors=>{
 		if(!isEmpty(errors)){
@@ -35,6 +40,7 @@ exports.signup = function(req, res, next) {
 				username: req.body.username,
 				password: generateHash(req.body.password),
 				email: req.body.email,
+				role: req.body.role
 				});
 						
 			return newUser.save().then(result => {

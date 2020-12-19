@@ -8,7 +8,7 @@ var session = require('express-session');
 var exphbs  = require('express-handlebars');
 
 //include Routers
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/index');
 var flash = require('connect-flash');
 require('./passportSetup')(passport);
 
@@ -31,7 +31,6 @@ app.use(passport.session());
 
 //routers
 app.use('/', usersRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
