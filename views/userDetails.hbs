@@ -124,11 +124,11 @@
                 <div class="outer-w3-agile mt-3">
                     <h4 class="tittle-w3-agileits mb-4">Manage users</h4>
                     <div class="table-responsive">
-                        {{#if userObjs}}
-                            {{#each userObjs}}
-                                {{@index}} {{this}}
-                            {{/each}}
-                        {{/if}}
+                        {{!-- {{#if userObj}} --}}
+                            {{!-- {{#each userObj}}
+                                {{this.email}}
+                            {{/each}} --}}
+                        {{!-- {{/if}} --}}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -137,42 +137,29 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Role</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Created</th>
-                                    <th scope="col">Updated</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                 {{#each userObj}}
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
+                                   <th scope="row">{{@key}}</th>
+                                        <td>{{this.username}}</td>
+                                        <td>{{this.email}}</td>
+                                        <td>{{this.role}}</td>
+                                        {{#if this.is_active}}
+                                        <td>Active</td>
+                                            {{else}}
+                                            <td>Not</td>
+                                        {{/if}}
+                                        <td>
+                                            <button type="button" class="btn btn-success btn-sm">Approve</button>
+                                        </td>
+
+                                        
+
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                    <td>Cell</td>
-                                </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
