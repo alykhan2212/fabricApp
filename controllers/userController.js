@@ -7,21 +7,20 @@ const {isEmpty} = require('lodash');
 
 const {validateUser} = require('../validators/signup')
 
-exports.homePage = function(req, res, next) {
-	// res.send(req.user)
-	res.render('index', { title: 'Home', user: req.user });
+exports.homePage = function(req, res, next) { 
+	res.render('pages/index', { user: req.user });
 }
 
 exports.show_login = function(req, res, next) {
-	res.render('user/login', {title:'Login - VRS', formData: {} , message: req.flash('message')  });  
+	res.render('pages/login', { formData: {} , message: req.flash('message')  });  
 }
 
 exports.show_signup = function(req, res, next) {
-    res.render('user/signup', {title:'Signup - VRS', formData: {} , errors: {} });
+    res.render('pages/signup', { formData: {} , errors: {} });
 }
 
 const rerender_signup = function(errors, req, res, next) {
-    res.render('user/signup', {title:'Signup - VRS', formData: req.body , errors: errors });
+    res.render('pages/signup', { formData: req.body , errors: errors });
 }
 
 const generateHash = function(password) {

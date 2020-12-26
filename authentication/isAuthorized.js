@@ -16,10 +16,10 @@ exports.isLoggedOut = function(req,res,next){
 
 exports.userRole = function(req,res,next){
 
-    if(req.user.role == 'admin' && req.user.is_active == true){
-        next();
-    }
-    else if(req.user.role == 'super_admin' && req.user.is_active == true){
+    // if(req.user.role == 'admin' && req.user.is_active == true){
+    //     next();
+    // }
+    if(req.user.role == 'super_admin' && req.user.is_active == true){
         next();
     }
     else{
