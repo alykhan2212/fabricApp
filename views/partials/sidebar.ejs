@@ -8,12 +8,15 @@
     </div>
     <div class="profile-bg"></div>
     <ul class="list-unstyled components">
-        <li class="active">
-            <a href="index.html">
-                <i class="fas fa-th-large"></i>
-                Dashboard
-            </a>
-        </li>
+        
+        <% if (user.role == 'super_admin') { %>
+            <li class="active">
+                <a href="/admin">
+                    <i class="fas fa-th-large"></i>
+                    Manage users
+                </a>
+            </li>
+        <% } %>
         
         <li>
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">

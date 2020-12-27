@@ -29,7 +29,7 @@
                     <div class="form-group">
                         <label>Register as admin</label>
                         <select id="inputState" name="role" class="form-control">
-                                    <option value="user">User</option>
+                                    <option value="applicant">User</option>
                                     <option value="admin">Admin</option>
                                 </select>
                     </div>
@@ -47,6 +47,12 @@
                         <% if (errors.password) { %>
                         <p class="small text-danger"><%= errors.password %></p>
                         <% } %>
+                       
+                        <% if (message) { %>
+                            <p class="small text-success"><%= message %></p>
+                        <% } %>
+                        
+                        
                     </div>
 
                     

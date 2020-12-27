@@ -36,18 +36,21 @@ module.exports = function(passport) {
 		}).then(user => {
 			if (user == null) {
 				// req.flash('message', 'Incorrect credentials.')
-				return done(null, false , req.flash('message', 'Incorrect credentials.'))
+				return done(null, false , req.flash('message', 'No account associated with this email'))
+
 			} else if (user.password == null || user.password == undefined) {
-				// req.flash('message', 'You must reset your password')
-				return done(null, false , req.flash('message', 'You must reset your password'))
+
+				return done(null, false , req.flash('message', 'Invalid password'))
+			
 			} else if(!validPassword(user, password)) {
-				// req.flash('message', 'Incorrect credentials')
-				return done(null, false , req.flash('message', 'Incorrect credentials'))
-			} 
-			// else if(user.is_admin && !user.is_active) {
-			// 	// req.flash('message', 'Incorrect credentials')
-			// 	return done(null, false , req.flash('message', 'Not Active yet'))
-			// }
+			
+				return done(null, false , req.flash('message', 'Invalid password'))
+			
+			} else if(!user.is_active) {
+
+				return done(null, false , req.flash('message', 'Not yet activated'))
+			
+			}
 			return done(null, user);
 		}).catch(err => {
 			done(err, false);

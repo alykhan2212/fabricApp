@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
-var exphbs  = require('express-handlebars');
+
 
 //include Routers
 var usersRouter = require('./routes/index');
@@ -16,9 +16,6 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.engine('hbs', exphbs({ extname: '.hbs',  defaultLayout: 'main' }));
-// app.set('view engine', 'hbs');
-
 app.set('view engine', 'ejs');
 
 app.use(flash())

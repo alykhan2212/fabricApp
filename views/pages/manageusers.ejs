@@ -20,7 +20,7 @@
 
             <!-- Page Content -->
                 <!-- main-heading -->
-            <h2 class="main-title-w3layouts mb-2 text-center">Mangae users</h2>
+            <h1 class="main-title-w3layouts mb-2 text-center">Mangae users</h1>
             <!--// main-heading -->
 
             <!-- Tables content -->
@@ -36,23 +36,24 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Update Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% userObjs.forEach(function(userObj){ %>
-                                <% if (userObj.role != 'user') { %>
+                                <% if (userObj.role != 'applicant') { %>
 
                                 <tr>
                                     <td scope="row">1</td>
                                     <td><%= userObj.username %></td>
                                     <td><%= userObj.email %></td>
-                                    <td><%= userObj.role === 'super_admin' ? 'Admin' : 'Moderator' %></td>
+                                    <td><%= userObj.role === 'super_admin' ? 'super admin' : 'admin' %></td>
                                     <td><%= userObj.is_active ? 'Active' : 'Pending' %></td>
                                     
                                     <% if(userObj.is_active){ %>
                                         <td>
-                                            <button type="button" class="btn btn-danger btn-sm">Deactivate</button>
+                                            <button type="button" class="btn btn-warning btn-sm">Deactivate</button>
                                         </td>
                                       <% } else{ %>
                                         <td>
@@ -60,9 +61,9 @@
                                         </td>
                                      <% } %>
 
-                                    <!-- <td>
-                                        <button type="button" class="btn btn-success btn-sm">Approve</button>
-                                    </td> -->
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
                                 </tr>
                                 <% } %>
                             <% }); %>
@@ -83,6 +84,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Update Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -90,7 +92,7 @@
                             
                             <% userObjs.forEach(function(userObj){ %>
                                 
-                                <% if (userObj.role == 'user') { %>
+                                <% if (userObj.role == 'applicant') { %>
 
                                 <tr>
                                     <td scope="row">1</td>
@@ -98,15 +100,18 @@
                                     <td><%= userObj.email %></td>
                                     <td><%= userObj.role %></td>
                                     <td><%= userObj.is_active === 'null' ? 'deactive' : 'Active' %></td>
-                                    <% if(userObj.is_active === null){ %>
+                                    <% if(userObj.is_active){ %>
                                         <td>
-                                            <button type="button" class="btn btn-danger btn-sm">Deactivate</button>
+                                            <button type="button" class="btn btn-warning btn-sm">Deactivate</button>
                                         </td>
                                       <% } else{ %>
                                         <td>
                                             <button type="button" class="btn btn-success btn-sm">Approve</button>
                                         </td>
                                      <% } %>
+                                     <td>
+                                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
                                 </tr>
                                 <% } %>
                             <% }); %>

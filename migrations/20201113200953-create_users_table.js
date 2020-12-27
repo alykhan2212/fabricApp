@@ -10,11 +10,11 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
       },
       username: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       password: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       email: {
@@ -23,11 +23,11 @@ module.exports = {
       },
       role: {
         allowNull: false,
-        type: Sequelize.ENUM('super_admin','admin', 'user'),
-        defaultValue: 'user'
+        type: Sequelize.ENUM('super_admin','admin', 'applicant'),
+        defaultValue: 'applicant'
       },
       is_active: {
-      	allowNull: true,
+      	allowNull: false,
       	type: Sequelize.BOOLEAN
       },
       createdAt: {
